@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 
 export const connectDB = async () => {
-  mongoose.connect('mongodb://localhost:27017//food-delivery')
-  .then(() => console.log("Connect successful"))
-  .catch(err => console.error(err));
-}
+  try {
+    await mongoose.connect("mongodb://127.0.0.1:27017/food-delivery");
+
+    console.log("MongoDB connected successfully");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error.message);
+    process.exit(1);
+  }
+};

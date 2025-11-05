@@ -6,13 +6,10 @@ const foodRouter = express.Router();
 
 // Cấu hình Multer
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // thư mục uploads trong backend
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
+  filename:(rep,file,cb) => {
+    return cb(null, `${Date.now()} $ {file.originalname}`)
+  }
+})
 
 const upload = multer({ storage: storage });
 
